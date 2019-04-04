@@ -10,7 +10,8 @@ const getHost = () => {
 
 export const wrapRequest = (url = '', config) => {
   return (data = {}, params = {}) => {
-    request(data, params, url, config);
+    // 返回一个promise的request
+    return request(data, params, url, config);
   };
 };
 
@@ -31,10 +32,23 @@ export const request = (data, params, url, config) => {
   return new Promise((resolve, reject) => {
     axios({
       method: method,
+      // 客户端发送服务端的数据格式为json
+      headers: { 'content-type': 'application/json; charset=utf-8' },
       url: baseUrl,
       data: data,
-    }).then(function(response) {
-      resolve(response.data);
-    });
+      // 服务器将响应的数据类型只接收json格式
+      responseType: 'json',
+    })
+      .then(function(response) {
+        const { data } = response;
+        if (!data) {
+          console.info('服务器未响应数据');
+          return;
+        }
+        resolve(data);
+      })
+      .catch(error => {
+        console.info(error);
+      });
   });
 };
