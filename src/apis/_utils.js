@@ -8,18 +8,19 @@ const getHost = () => {
   return hostname;
 };
 
-export const wrapRequest = (url = '', mock = false) => {
+export const wrapRequest = (url = '', config) => {
   return (data = {}, params = {}) => {
-    request(data, params, url, mock);
+    request(data, params, url, config);
   };
 };
 
-export const request = (data, params, url, mock) => {
+export const request = (data, params, url, config) => {
   const base = {
     method: 'POST',
+    ...config,
   };
 
-  const origin = mock ? 'mock' : 'apis';
+  const origin = base.mock ? 'mock' : 'apis';
 
   const baseUrl = `${getHost()}/${origin}/${url}`;
 

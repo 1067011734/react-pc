@@ -1,3 +1,5 @@
-import { wrapRequest } from './_utils'
+import { wrapRequest } from './_utils';
 
-export const getUserData = wrapRequest('getUser',true);
+export const getUserData = wrapRequest('getUser', {
+    mock: true,
+  });
