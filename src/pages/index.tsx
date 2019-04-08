@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './index.css';
 import Card from "@/components/Card";
 import router from 'umi/router';
+import { directive } from '@babel/types';
 
 const handleClick=()=>{
   router.push('/user');
@@ -18,7 +19,10 @@ export default function() {
             Getting Started
           </a>
         </li>
-        <Card/>
+        <Card
+          title="你好"
+          operactin={<div>222222</div>}
+        />
       </ul>
     </div>
   );
