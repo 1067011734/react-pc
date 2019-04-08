@@ -1,7 +1,8 @@
 import { PureComponent } from 'react';
 import { getUserData } from '@/apis/user';
+import { inject, observer } from 'mobx-react';
 
-export default class app extends PureComponent {
+class App extends PureComponent {
   componentDidMount() {
     getUserData({ a: 1 })
     .then(data=>{
@@ -10,6 +11,16 @@ export default class app extends PureComponent {
   }
 
   render() {
-    return <p>4444</p>;
+    return (
+      <div>
+        {this.props.name}
+        <p>4444</p>
+      </div>
+    )
   }
 }
+
+export default inject(({ stores }) => ({
+  name: stores.Home.name,
+  setTitle: stores.Home.setTitle,
+}))(observer(App));

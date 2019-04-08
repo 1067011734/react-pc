@@ -16,9 +16,11 @@ const config: IConfig =  {
       routes: {
         exclude: [
           /components\//,
+          /stores\//
         ],
       },
     }],
+    ["umi-plugin-mobx-state-tree"]
   ],
   history: 'hash',
   alias:{
