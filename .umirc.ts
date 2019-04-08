@@ -24,7 +24,10 @@ const config: IConfig =  {
   alias:{
     '@components': path.resolve(__dirname, 'src/components')
   },
-  publicPath:'./'
+  publicPath:'./',
+  define: {
+    "process.env.APP_KEY": process.env.APP_KEY || 'daily',
+  },
 }
 
 export default config;

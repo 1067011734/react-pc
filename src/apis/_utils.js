@@ -2,7 +2,10 @@ import axios from 'axios';
 
 const getHost = () => {
   let hostname = 'http://localhost:8000';
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.APP_KEY === 'pre') {
+    hostname = 'https://www.google.com';
+  }
+  if (process.env.APP_KEY === 'production') {
     hostname = 'https://www.baidu.com';
   }
   return hostname;
