@@ -1,3 +1,28 @@
+@msg-prefix-cls: ~'msg-wrap';
+
+.@{msg-prefix-cls}{
+  position: fixed;
+  z-index: 999;
+  background: #48d69b;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  padding: 20px 30px;
+  color: #fff;
+  animation: fadeInDown .5s;
+}
+.@{msg-prefix-cls}-leave{
+  animation: fadeInOut .5s;
+}
+.@{msg-prefix-cls}-info{
+  background: #48d69b;
+}
+.@{msg-prefix-cls}-error{
+  background: #ff4141;
+}
+
+
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -24,20 +49,4 @@
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
-}
-
-.msg-wrap{
-  position: fixed;
-  z-index: 999;
-  background: #48d69b;
-  top: 0;
-  left: 0;
-  display: flex;
-  width: 100%;
-  padding: 20px 30px;
-  color: #fff;
-  animation: fadeInDown .5s;
-}
-.msg-wrap-leave{
-  animation: fadeInOut .5s;
 }
