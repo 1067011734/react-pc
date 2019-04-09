@@ -1,9 +1,11 @@
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { getUserData } from '@/apis/user';
+import { okMsg } from '@/utils/msg';
 import { inject, observer } from 'mobx-react';
 
-class App extends PureComponent {
+class App extends Component {
   componentDidMount() {
+    okMsg('审批成功')
     getUserData({ a: 1 })
     .then(data=>{
       console.info(data,22)

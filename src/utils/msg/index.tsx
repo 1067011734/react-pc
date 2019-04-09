@@ -1,0 +1,55 @@
+import React from 'react';
+import * as ReactDOM from 'react-dom';
+import classNames from 'classnames';
+import style from './index.less';
+
+export interface CardProps {
+  // 自动关闭延时，单位毫秒
+  duration: number;
+  // 标题
+  title: string;
+  // 父元素，用于关闭提示框
+  warpNode: React.ReactNode;
+}
+
+class Msg extends React.Component<CardProps, {}> {
+  state = {
+    fadeOut: false,
+  };
+
+  componentDidMount() {
+    const { warpNode, duration } = this.props;
+    setTimeout(() => {
+      this.setState(
+        {
+          fadeOut: true,
+        },
+        () => {
+          setTimeout(() => {
+            const unmountResult = ReactDOM.unmountComponentAtNode(warpNode);
+            if (unmountResult && warpNode.parentNode) {
+              warpNode.parentNode.removeChild(warpNode);
+            }
+          }, 500);
+        },
+      );
+    }, duration);
+  }
+  render() {
+    const { title } = this.props;
+    const { fadeOut } = this.state;
+
+    const className = classNames({
+      [style['msg-wrap']]: true,
+      [style['msg-wrap-leave']]: fadeOut,
+    });
+
+    return <div className={className}>{title}</div>;
+  }
+}
+
+export const okMsg = (title, time = 2000) => {
+  const div = document.createElement('div');
+  document.body.appendChild(div);
+  ReactDOM.render(<Msg duration={time} title={title} warpNode={div} />, div);
+};
