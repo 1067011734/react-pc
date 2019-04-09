@@ -1,14 +1,11 @@
 import { Component } from 'react';
 import { getUserData } from '@/apis/user';
-import { okMsg } from '@/utils/msg';
 import { inject, observer } from 'mobx-react';
 
 class App extends Component {
   componentDidMount() {
-    okMsg('审批成功')
-    getUserData({ a: 1 })
-    .then(data=>{
-      console.info(data,22)
+    getUserData({ a: 1 }, { okMsg: '审批提交成功' }).then(data => {
+      console.info(data, 22);
     });
   }
 
@@ -18,7 +15,7 @@ class App extends Component {
         {this.props.name}
         <p>4444</p>
       </div>
-    )
+    );
   }
 }
 

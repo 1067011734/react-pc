@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { okMsg } from '@/utils/msg';
 
 const getHost = () => {
   let hostname = 'http://localhost:8000';
@@ -47,6 +48,9 @@ export const request = (data, params, url, config) => {
         if (!data) {
           console.info('服务器未响应数据');
           return;
+        }
+        if(params.okMsg){
+          okMsg(params.okMsg);
         }
         resolve(data);
       })

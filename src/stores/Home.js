@@ -2,7 +2,7 @@ import { types } from 'mobx-state-tree';
 
 const Todo = types
   .model({
-    name: '欢迎光临',
+    name: 'hello world',
     done: false,
   })
   .actions(self => {

@@ -1,7 +1,7 @@
 export function config() {
   return {
-    devTools: true,
-    mstTools: true,
+    devTools: false,
+    mstTools: false,
     initStores: {
       list: {
         name: "init list name"
